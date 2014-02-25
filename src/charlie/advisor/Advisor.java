@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package charlie.advisor;
 
 import charlie.card.Card;
@@ -19,9 +18,9 @@ public class Advisor implements IAdvisor {
 
     @Override
     public Play advise(Hand myHand, Card upCard) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BasicStrategy basicStrategy = new BasicStrategy();
+        Play advisedPlay = basicStrategy.getPlay(myHand, upCard);
+        return advisedPlay;
     }
-    
+
 }
-
-
