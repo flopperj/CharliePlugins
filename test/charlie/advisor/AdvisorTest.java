@@ -1,9 +1,8 @@
 /**
- * I could not get the tests to working with the naming convention on the
- * assignment When I tried to do so. I got the message below.
- *
- * Warning: The project's infrastructure may not be able to initiate execution
- * of the test class if its name does not end with "Test"
+ * This is the test class that runs all our test cases
+ * 
+ * @author jamesarama
+ * @author gabriela
  */
 package charlie.advisor;
 

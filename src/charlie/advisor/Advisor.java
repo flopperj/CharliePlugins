@@ -8,6 +8,7 @@ import charlie.util.Play;
 /**
  *This is the Advisor class
  * @author jamesarama
+ * @author gabriela
  */
 public class Advisor implements IAdvisor {
 

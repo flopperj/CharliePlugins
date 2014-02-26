@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package charlie.advisor.section3;
 import charlie.advisor.Advisor;
 import charlie.card.Card;
@@ -22,6 +16,7 @@ import org.junit.Test;
 /**
  *
  * @author jamesarama
+ * @author gabriela
  */
 public class TestAdvice00_A2_6 {
     private static IAdvisor advisor;

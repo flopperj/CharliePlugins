@@ -9,6 +9,7 @@ import java.util.HashMap;
  * This is the basic strategy class
  *
  * @author jamesarama
+ * @author gabriela
  */
 public class BasicStrategy {
 
@@ -91,7 +92,7 @@ public class BasicStrategy {
         }
 
         // Debugging purposes
-        System.out.println(key + " <============ This is the key");
+//        System.out.println(key + " <============ This is the key");
         return advisedPlay;
     }
 
