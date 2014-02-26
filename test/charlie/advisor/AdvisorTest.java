@@ -29,7 +29,7 @@ import org.junit.runners.Suite;
     
     // Section 2
     TestAdvice00_5_2.class,
-    TestAdvice00_5_7.class, // Failed
+    TestAdvice00_5_7.class,
     TestAdvice01_5_2.class,
     TestAdvice01_5_7.class,
     

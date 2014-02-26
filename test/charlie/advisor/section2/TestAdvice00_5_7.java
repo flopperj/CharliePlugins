@@ -52,8 +52,8 @@ public class TestAdvice00_5_7 {
         Hand hand = new Hand(hid);
         
         // Hand total = 10
-        hand.hit(new Card(5, Card.Suit.HEARTS));
-        hand.hit(new Card(5, Card.Suit.DIAMONDS));
+        hand.hit(new Card(8, Card.Suit.HEARTS));
+        hand.hit(new Card(2, Card.Suit.DIAMONDS));
         
         // Up card = A
         Play currentPlay = advisor.advise(hand, new Card(10, Card.Suit.HEARTS));
