@@ -1,22 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * I could not get the tests to working with the naming convention on the
+ * assignment When I tried to do so. I got the message below.
+ *
+ * Warning: The project's infrastructure may not be able to initiate execution
+ * of the test class if its name does not end with "Test"
  */
 package charlie.advisor;
 
-import charlie.card.Card;
-import charlie.card.Hand;
-import charlie.card.Hid;
-import charlie.dealer.Seat;
-import charlie.util.Play;
+import charlie.advisor.section1.*;
+import charlie.advisor.section2.*;
+import charlie.advisor.section3.*;
+import charlie.advisor.section4.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+    // Section 1
+    TestAdvice00_12_2.class,
+    TestAdvice00_12_7.class,
+    TestAdvice01_12_2.class,
+    TestAdvice01_12_7.class,
+    
+    // Section 2
+    TestAdvice00_5_2.class,
+    TestAdvice00_5_7.class, // Failed
+    TestAdvice01_5_2.class,
+    TestAdvice01_5_7.class,
+    
+    // Section 3
+    TestAdvice00_A2_6.class,
+    TestAdvice00_A2_7.class,
+    TestAdvice01_A2_6.class,
+    TestAdvice01_A2_7.class,
+    
+    // Section 4
+    TestAdvice00_22_2.class,
+    TestAdvice00_22_7.class,
+    TestAdvice01_22_2.class,
+    TestAdvice01_22_7.class
+})
 /**
  *
  * @author jamesarama
@@ -47,57 +75,6 @@ public class AdvisorTest {
      */
     @Test
     public void testAdvise() {
-
-        //========== A and 2 of clubs=========================================
-        System.out.println("advise => Header: A,2 and Dealer: 2");
-        Hid hid = new Hid(Seat.YOU,0 ,0);
-        Hand myHand = new Hand(hid);
-
-        Card ace = new Card(Card.ACE, Card.Suit.CLUBS);
-        Card two = new Card(2, Card.Suit.CLUBS);
-        myHand.hit(ace);
-        myHand.hit(two);
-
-        Card upCard = new Card(2, Card.Suit.CLUBS);
-        Advisor instance = new Advisor();
-
-        Play expResult = Play.HIT;
-        Play result = instance.advise(myHand, upCard);
-        assertEquals(expResult, result);
-
-        //========== 2s of clubs, Diamonds, clubs and Hearts ===================
-        System.out.println("advise => Header: 2,2 and Dealer: 2");
-        Hid hid2 = new Hid(Seat.YOU,0 ,0);
-        Hand myHand2 = new Hand(hid2);
-
-        Card two1 = new Card(2, Card.Suit.DIAMONDS);
-        Card two2 = new Card(2, Card.Suit.CLUBS);
-        myHand2.hit(two1);
-        myHand2.hit(two2);
-
-        Card upCard2 = new Card(2, Card.Suit.HEARTS);
-        Advisor instance2 = new Advisor();
-
-        Play expResult2 = Play.SPLIT;
-        Play result2 = instance2.advise(myHand2, upCard2);
-        assertEquals(expResult2, result2);
-
-        //========== Ace of Diamonds, 2 of clubs and 6 of Hearts ===============
-        System.out.println("advise => Header: A,5 and Dealer: 2");
-        Hid hid3 = new Hid(Seat.YOU,0 ,0);
-        Hand myHand3 = new Hand(hid3);
-
-        Card ace2 = new Card(Card.ACE, Card.Suit.DIAMONDS);
-        Card five = new Card(2, Card.Suit.CLUBS);
-        myHand3.hit(ace2);
-        myHand3.hit(five);
-
-        Card upCard3 = new Card(6, Card.Suit.HEARTS);
-        Advisor instance3 = new Advisor();
-
-        Play expResult3 = Play.DOUBLE_DOWN;
-        Play result3 = instance3.advise(myHand3, upCard3);
-        assertEquals(expResult3, result3);
     }
 
 }
