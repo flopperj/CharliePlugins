@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package charlie.advisor;
 
 import charlie.card.Card;
@@ -11,11 +6,17 @@ import charlie.plugin.IAdvisor;
 import charlie.util.Play;
 
 /**
- *
+ *This is the Advisor class
  * @author jamesarama
  */
 public class Advisor implements IAdvisor {
 
+    /**
+     * This is the advise method
+     * @param myHand
+     * @param upCard
+     * @return advisedPlay
+     */
     @Override
     public Play advise(Hand myHand, Card upCard) {
         BasicStrategy basicStrategy = new BasicStrategy();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package charlie.advisor;
 
 import charlie.card.Card;
@@ -11,7 +6,7 @@ import charlie.util.Play;
 import java.util.HashMap;
 
 /**
- *
+ * This is the basic strategy class
  * @author jamesarama
  */
 public class BasicStrategy {
@@ -93,7 +88,9 @@ public class BasicStrategy {
 
             advisedPlay = this._valuePlays.get(key);
         }
-        System.out.println(key + " <============ This is the key");
+        
+        // Debugging purposes
+//        System.out.println(key + " <============ This is the key");
         return advisedPlay;
     }
 
@@ -193,21 +190,30 @@ public class BasicStrategy {
                 String key = hand + "|" + dCard;
 
                 //============== Hit ===========================================
+                // Hand: 5-8 and Dealer: 2-10, A
                 if (value >= 5 && value <= 8) {
                     this._valuePlays.put(key, Play.HIT);
-                } else if (value == 9) {
+                } 
+                // Hand: 9 and Dealer: 2, 7-10, A
+                else if (value == 9) {
                     if (dealer <= 2 && dealer >= 7) {
                         this._valuePlays.put(key, Play.HIT);
                     }
-                } else if (value == 10) {
+                } 
+                // Hand: 10 and Dealer: 10, A
+                else if (value == 10) {
                     if (dealer >= 10) {
                         this._valuePlays.put(key, Play.HIT);
                     }
-                } else if (value == 11) {
+                } 
+                // Hand: 11 and Dealer: 11
+                else if (value == 11) {
                     if (dealer == 11) {
                         this._valuePlays.put(key, Play.HIT);
                     }
-                } else if (value >= 12 && value <= 16) {
+                } 
+                // Hand: 12 - 16 and Dealer: 2-3
+                else if (value >= 12 && value <= 16) {
                     if (value == 12) {
                         if (dealer >= 2 && dealer <= 3) {
                             this._valuePlays.put(key, Play.HIT);
@@ -220,9 +226,12 @@ public class BasicStrategy {
                 }
 
                 //============== Stand =========================================
+                // Hand: 17 and Dealer: 2-10,A
                 if (value == 17) {
                     this._valuePlays.put(key, Play.STAY);
-                } else if (value >= 12 && value <= 16) {
+                } 
+                // Hand: 12-16 and Dealer: 2-6, 
+                else if (value >= 12 && value <= 16) {
 
                     if (value == 12 && dealer >= 4 && dealer <= 6) {
                         this._valuePlays.put(key, Play.STAY);
@@ -233,11 +242,16 @@ public class BasicStrategy {
                 }
 
                 //============== Double Down ===================================
+                // Hand: 9 and Dealer: 3 - 6
                 if (value == 9 && dealer >= 3 && dealer <= 6) {
                     this._valuePlays.put(key, Play.DOUBLE_DOWN);
-                } else if (value == 10 && dealer >= 2 && dealer <= 9) {
+                } 
+                // Hand: 10 and Dealer: 2 - 9
+                else if (value == 10 && dealer >= 2 && dealer <= 9) {
                     this._valuePlays.put(key, Play.DOUBLE_DOWN);
-                } else if (value == 11 && dealer >= 2 && dealer <= 10) {
+                } 
+                // Hand: 11 and Dealer: 2 - 10
+                else if (value == 11 && dealer >= 2 && dealer <= 10) {
                     this._valuePlays.put(key, Play.DOUBLE_DOWN);
                 }
 
