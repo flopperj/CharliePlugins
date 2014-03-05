@@ -14,17 +14,20 @@ import java.util.HashMap;
 public class BasicStrategy {
 
     /**
-     * @private @property HashMap<String, Play> _valuePlays - All plays that are
+     * @private 
+     * @property HashMap<String, Play> _valuePlays - All plays that are
      * based on total value
      */
     private final HashMap<String, Play> _valuePlays;
     /**
-     * @private @property HashMap<String, Play> _acePlays - All plays that
+     * @private 
+     * @property HashMap<String, Play> _acePlays - All plays that
      * contain an Ace
      */
     private final HashMap<String, Play> _acePlays;
     /**
-     * @private @property HashMap<String, Play> _pairPlays - All plays that are
+     * @private 
+     * @property HashMap<String, Play> _pairPlays - All plays that are
      * pairs
      */
     private final HashMap<String, Play> _pairPlays;
@@ -61,9 +64,7 @@ public class BasicStrategy {
         String key;
         int handValue;
         dealer = upCard.getName();
-        // check for aces
-        // check for pairs
-        // check for value
+        // check for aces, pairs & value plays
         if (myHand.size() == 2) {
             handCard1 = myHand.getCard(0).getName();
             handCard2 = myHand.getCard(1).getName();
@@ -74,16 +75,19 @@ public class BasicStrategy {
             // check for pair
             if (myHand.isPair() && handCard1.equals(handCard2)) {
                 advisedPlay = this._pairPlays.get(key);
-            } else if (this._containsAce(hand)) {
+            } // check for ace
+            else if (this._containsAce(hand)) {
                 advisedPlay = this._acePlays.get(key);
-            } else {
+            } // Otherwise use value plays
+            else {
                 handValue = (Integer) myHand.getValue();
                 hand = handValue <= 17 ? Integer.toString(handValue) : "17";
                 key = hand + "|" + dealer;
                 advisedPlay = this._valuePlays.get(key);
             }
 
-        } else {
+        } // Use value plays 
+        else {
             handValue = myHand.getValue();
             hand = handValue <= 17 ? Integer.toString(handValue) : "17";
             key = hand + "|" + dealer;
