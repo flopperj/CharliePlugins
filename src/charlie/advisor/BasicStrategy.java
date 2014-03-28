@@ -14,20 +14,17 @@ import java.util.HashMap;
 public class BasicStrategy {
 
     /**
-     * @private 
-     * @property HashMap<String, Play> _valuePlays - All plays that are
+     * @private @property HashMap<String, Play> _valuePlays - All plays that are
      * based on total value
      */
     private final HashMap<String, Play> _valuePlays;
     /**
-     * @private 
-     * @property HashMap<String, Play> _acePlays - All plays that
+     * @private @property HashMap<String, Play> _acePlays - All plays that
      * contain an Ace
      */
     private final HashMap<String, Play> _acePlays;
     /**
-     * @private 
-     * @property HashMap<String, Play> _pairPlays - All plays that are
+     * @private @property HashMap<String, Play> _pairPlays - All plays that are
      * pairs
      */
     private final HashMap<String, Play> _pairPlays;
@@ -64,6 +61,23 @@ public class BasicStrategy {
         String key;
         int handValue;
         dealer = upCard.getName();
+
+        // Check for J,K,Q upcards and assign correct values
+        switch (dealer) {
+            case "A":
+                dealer = "11";
+                break;
+            case "J":
+                dealer = "10";
+                break;
+            case "K":
+                dealer = "10";
+                break;
+            case "Q":
+                dealer = "10";
+                break;
+        }
+
         // check for aces, pairs & value plays
         if (myHand.size() == 2) {
             handCard1 = myHand.getCard(0).getName();
@@ -81,22 +95,23 @@ public class BasicStrategy {
             } // Otherwise use value plays
             else {
                 handValue = (Integer) myHand.getValue();
-                hand = handValue <= 17 ? Integer.toString(handValue) : "17";
+                hand = handValue < 17 ? Integer.toString(handValue) : "17+";
                 key = hand + "|" + dealer;
                 advisedPlay = this._valuePlays.get(key);
+                System.out.println("Went to get value plays");
             }
 
         } // Use value plays 
         else {
             handValue = myHand.getValue();
-            hand = handValue <= 17 ? Integer.toString(handValue) : "17";
+            hand = handValue < 17 ? Integer.toString(handValue) : "17+";
             key = hand + "|" + dealer;
 
             advisedPlay = this._valuePlays.get(key);
         }
 
         // Debugging purposes
-//        System.out.println(key + " <============ This is the key");
+        System.out.println(key + " <============ This is the key");
         return advisedPlay;
     }
 
@@ -109,12 +124,15 @@ public class BasicStrategy {
      */
     public String[] getDealerUpCards() {
 
-        int numUpCards = 10;
+        int numUpCards = 13;
         String[] dealerUpCards = new String[numUpCards];
 
         // populate the upcards
         for (int i = 0; i < numUpCards; i++) {
             String value = (i + 2) < 11 ? Integer.toString(i + 2) : "A";
+            value = (i + 2) == 12 ? "J" : value;
+            value = (i + 2) == 13 ? "K" : value;
+            value = (i + 2) == 14 ? "Q" : value;
             dealerUpCards[i] = value;
         }
 
@@ -161,6 +179,8 @@ public class BasicStrategy {
             int val;
             if (card.equals("A")) {
                 val = 11;
+            } else if (card.equals("J") || card.equals("K") || card.equals("Q")) {
+                val = 10;
             } else {
                 val = Integer.parseInt(card);
             }
@@ -192,6 +212,7 @@ public class BasicStrategy {
             for (int value = firstCard; value <= limitValue; value++) {
 
                 String hand = Integer.toString(value);
+                hand = (value == 17 ? "17+" : hand);
                 String dCard = upCards[dealer - 2];
                 String key = hand + "|" + dCard;
 
