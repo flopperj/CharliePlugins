@@ -64,9 +64,6 @@ public class BasicStrategy {
 
         // Check for J,K,Q upcards and assign correct values
         switch (dealer) {
-            case "A":
-                dealer = "11";
-                break;
             case "J":
                 dealer = "10";
                 break;
@@ -98,7 +95,6 @@ public class BasicStrategy {
                 hand = handValue < 17 ? Integer.toString(handValue) : "17+";
                 key = hand + "|" + dealer;
                 advisedPlay = this._valuePlays.get(key);
-                System.out.println("Went to get value plays");
             }
 
         } // Use value plays 
@@ -111,7 +107,7 @@ public class BasicStrategy {
         }
 
         // Debugging purposes
-        System.out.println(key + " <============ This is the key");
+//        System.out.println(key + " <============ This is the key");
         return advisedPlay;
     }
 
@@ -249,6 +245,7 @@ public class BasicStrategy {
                 //============== Stand =========================================
                 // Hand: 17 and Dealer: 2-10,A
                 if (value == 17) {
+                    System.out.println(key);
                     this._valuePlays.put(key, Play.STAY);
                 } // Hand: 12-16 and Dealer: 2-6, 
                 else if (value >= 12 && value <= 16) {
