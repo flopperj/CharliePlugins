@@ -91,15 +91,15 @@ class Responder implements Runnable {
         }
 
         // Tell the dealer what plays B9 will make
-        if (advice == Play.DOUBLE_DOWN && myHand.size() == 2) {
+        if (myHand.size() == 2 && advice == Play.DOUBLE_DOWN) {
             dealer.doubleDown(b9, myHand.getHid());
         } else if (advice == Play.SPLIT) {
-            if (myHand.getValue() >= 17 || (myHand.getValue() <= 16 && dealerUpCard.value() <= 6)) {
-                dealer.stay(b9, myHand.getHid());
-            } else if (myHand.getValue() <= 10 || (myHand.getValue() <= 16 && dealerUpCard.value() >= 7 && dealerUpCard.value() <= 11)) {
-                dealer.hit(b9, myHand.getHid());
-            } else if (myHand.getValue() == 11 && myHand.size() == 2) {
+            if (myHand.size() == 2 && myHand.getValue() == 11) {
                 dealer.doubleDown(b9, myHand.getHid());
+            } else if ((myHand.getValue() <= 16 && dealerUpCard.value() >= 7 && dealerUpCard.value() <= 11) || myHand.getValue() <= 10) {
+                dealer.hit(b9, myHand.getHid());
+            } else if (myHand.getValue() >= 17 || (myHand.getValue() <= 16 && dealerUpCard.value() <= 6)) {
+                dealer.stay(b9, myHand.getHid());
             }
         } else if (advice == Play.STAY) {
             dealer.stay(b9, myHand.getHid());
