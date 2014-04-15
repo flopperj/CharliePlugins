@@ -20,7 +20,6 @@
  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package charlie.sidebet.rule;
 
 import charlie.card.Card;
@@ -31,40 +30,99 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class implements the side bet rule for Super 7.
+ *
  * @author Ron Coleman
  */
 public class SideBetRule implements ISideBetRule {
+
     private final Logger LOG = LoggerFactory.getLogger(SideBetRule.class);
-    
+
     private final Double PAYOFF_SUPER7 = 3.0;
+    private final Double PAYOFF_EXACTLY13 = 10.0;
+    private final Double PAYOFF_ROYALMATCH = 5.0;
 
     /**
-     * Apply rule to the hand and return the payout if the rule matches
-     * and the negative bet if the rule does not match.
+     * Apply rule to the hand and return the payout if the rule matches and the
+     * negative bet if the rule does not match.
+     *
      * @param hand Hand to analyze.
-     * @return 
+     * @return
      */
     @Override
     public double apply(Hand hand) {
+        return this.superSevenBet(hand);
+    }
 
-        
+    /**
+     * This is the Super Sevens side bet implementation
+     *
+     * @private
+     * @param hand
+     * @return
+     */
+    private double superSevenBet(Hand hand) {
+
         Double bet = hand.getHid().getSideAmt();
-        LOG.info("side bet amount = "+bet);
-        
-        if(bet == 0)
+        LOG.info("side bet amount = " + bet);
+
+        if (bet == 0) {
             return 0.0;
-        
-        LOG.info("side bet rule applying hand = "+hand);
-        
+        }
+
+        LOG.info("side bet rule applying hand = " + hand);
+
         Card card = hand.getCard(0);
- 
-        if(card.getRank() == 7) {
+
+        if (card.getRank() == 7) {
             LOG.info("side bet SUPER 7 matches");
             return bet * PAYOFF_SUPER7;
         }
-        
+
         LOG.info("side bet rule no match");
-        
+
         return -bet;
     }
+
+    /**
+     * This is the Royal Match side bet implementation
+     *
+     * @private
+     * @param hand
+     * @return
+     */
+    private double royalMatchBet(Hand hand) {
+
+        Double bet = hand.getHid().getSideAmt();
+        LOG.info("side bet amount = " + bet);
+
+        if (bet == 0) {
+            return 0.0;
+        }
+
+        LOG.info("side bet rule applying hand = " + hand);
+
+        Card card = hand.getCard(0);
+        Card card2 = hand.getCard(1);
+
+        if (card.getSuit().equals(card2.getSuit())) {
+            LOG.info("side bet ROYAL MATCH matches");
+            return bet * this.PAYOFF_ROYALMATCH;
+        }
+
+        LOG.info("side bet rule no match");
+
+        return -bet;
+    }
+
+    /**
+     * This is the Exactly 13 side bet implementation
+     *
+     * @private
+     * @param hand
+     * @return
+     */
+    private double exactly13SideBet(Hand hand) {
+        return 0;
+    }
+
 }
