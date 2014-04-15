@@ -245,7 +245,6 @@ public class BasicStrategy {
                 //============== Stand =========================================
                 // Hand: 17 and Dealer: 2-10,A
                 if (value == 17) {
-                    System.out.println(key);
                     this._valuePlays.put(key, Play.STAY);
                 } // Hand: 12-16 and Dealer: 2-6, 
                 else if (value >= 12 && value <= 16) {
