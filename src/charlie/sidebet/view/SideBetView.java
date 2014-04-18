@@ -219,6 +219,7 @@ public class SideBetView implements ISideBetView {
 
         int length = (int) (Math.log10(amt) + 1);
 
+        // center sidebet amount inside the dashed circle
         if (length <= 2) {
             g.drawString("" + amt, X - 5, Y + 5);
         } else if (length == 3) {
@@ -248,6 +249,7 @@ public class SideBetView implements ISideBetView {
             bet = hid.getSideAmt();
         }
 
+        // we also only want to render when the game has ended
         if (bet != 0.0 && hasEnded) {
             if (hasWinningStreak) {
                 g.setColor(winColorBg);
