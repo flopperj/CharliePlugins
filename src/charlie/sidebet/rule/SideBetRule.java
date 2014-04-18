@@ -40,6 +40,9 @@ public class SideBetRule implements ISideBetRule {
     private final Double PAYOFF_SUPER7 = 3.0;
     private final Double PAYOFF_EXACTLY13 = 10.0;
     private final Double PAYOFF_ROYALMATCH = 5.0;
+    private final int SUPER7_RULE = 7;
+    private final int EXACTLY13_RULE = 13;
+    private final int ROYALMATCH_RULE = 0;
 
     /**
      * Apply rule to the hand and return the payout if the rule matches and the
@@ -50,7 +53,16 @@ public class SideBetRule implements ISideBetRule {
      */
     @Override
     public double apply(Hand hand) {
-        return this.superSevenBet(hand);
+
+        Card card = hand.getCard(0);
+
+        if (hand.getValue() == SUPER7_RULE) {
+            return this.superSevenBet(hand);
+        } else if (card.getRank() == EXACTLY13_RULE) {
+            return this.exactly13SideBet(hand);
+        } else {
+            return this.royalMatchBet(hand);
+        }
     }
 
     /**
@@ -104,7 +116,9 @@ public class SideBetRule implements ISideBetRule {
         Card card = hand.getCard(0);
         Card card2 = hand.getCard(1);
 
-        if (card.getSuit().equals(card2.getSuit())) {
+        if (card.getSuit().equals(card2.getSuit())
+                || (card.getName().equals("Q") && card2.getName().equals("K"))
+                || (card.getName().equals("K") && card2.getName().equals("Q"))) {
             LOG.info("side bet ROYAL MATCH matches");
             return bet * this.PAYOFF_ROYALMATCH;
         }
@@ -122,7 +136,25 @@ public class SideBetRule implements ISideBetRule {
      * @return
      */
     private double exactly13SideBet(Hand hand) {
-        return 0;
+
+        Double bet = hand.getHid().getSideAmt();
+        LOG.info("side bet amount = " + bet);
+
+        if (bet == 0) {
+            return 0.0;
+        }
+
+        LOG.info("side bet rule applying hand = " + hand);
+
+        // Exactly 13
+        if (hand.getValue() == 13) {
+            LOG.info("side bet EXACTLY 13 matches");
+            return bet * PAYOFF_EXACTLY13;
+        }
+
+        LOG.info("side bet rule no match");
+
+        return -bet;
     }
 
 }

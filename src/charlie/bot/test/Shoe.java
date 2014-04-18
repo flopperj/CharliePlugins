@@ -5,14 +5,13 @@
  */
 
 package charlie.bot.test;
-import charlie.card.Shoe;
 import java.util.Random;
 
 /**
  *
  * @author jamesarama
  */
-public class TestShoe extends Shoe {
+public class Shoe extends charlie.card.Shoe {
 
     @Override
     public void init() {
