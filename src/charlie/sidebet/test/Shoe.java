@@ -33,14 +33,73 @@ public class Shoe extends charlie.card.Shoe {
     @Override
     public void init() {
         cards.clear();
+        //First hand: 7 k 9 9 3
         cards.add(new Card(7, Card.Suit.DIAMONDS));
-        cards.add(new Card(9, Card.Suit.CLUBS));
-        cards.add(new Card(Card.JACK, Card.Suit.SPADES));
-        cards.add(new Card(Card.ACE, Card.Suit.SPADES));
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
+        cards.add(new Card(9, Card.Suit.SPADES));
+        cards.add(new Card(9, Card.Suit.DIAMONDS));
+        cards.add(new Card(3, Card.Suit.HEARTS));
+
+        //Second hand: 7 k 9 8 3
+        cards.add(new Card(7, Card.Suit.CLUBS));
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
+        cards.add(new Card(9, Card.Suit.HEARTS));
+        cards.add(new Card(8, Card.Suit.HEARTS));
+        cards.add(new Card(3, Card.Suit.SPADES));
+
+        //Third hand: 9 k 7 8 3
+        cards.add(new Card(9, Card.Suit.HEARTS));
+        cards.add(new Card(Card.KING, Card.Suit.DIAMONDS));
+        cards.add(new Card(7, Card.Suit.SPADES));
+        cards.add(new Card(8, Card.Suit.HEARTS));
+        cards.add(new Card(3, Card.Suit.CLUBS));
+
+        //Fourth hand: 7 k 9 10 3
+        cards.add(new Card(7, Card.Suit.CLUBS));
+        cards.add(new Card(Card.KING, Card.Suit.HEARTS));
+        cards.add(new Card(9, Card.Suit.SPADES));
+        cards.add(new Card(10, Card.Suit.DIAMONDS));
+        cards.add(new Card(3, Card.Suit.CLUBS));
+
+        //Fifth hand: 9 k 7 10 3
+        cards.add(new Card(9, Card.Suit.HEARTS));
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
+        cards.add(new Card(7, Card.Suit.DIAMONDS));
+        cards.add(new Card(10, Card.Suit.HEARTS));
+        cards.add(new Card(3, Card.Suit.SPADES));
+
+        //Sixth hand: K (suited) K Q(suited) 8
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
+        cards.add(new Card(Card.KING, Card.Suit.SPADES));
+        cards.add(new Card(Card.QUEEN, Card.Suit.CLUBS));
+        cards.add(new Card(8, Card.Suit.DIAMONDS));
+
+        //Seventh hand: K(unsuited) K Q(unsuited) 8
+        cards.add(new Card(Card.KING, Card.Suit.SPADES));
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
+        cards.add(new Card(Card.QUEEN, Card.Suit.DIAMONDS));
+        cards.add(new Card(8, Card.Suit.HEARTS));
+
+        //Eighth hand: 8 k 5 6 k
+        cards.add(new Card(8, Card.Suit.HEARTS));
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
+        cards.add(new Card(5, Card.Suit.SPADES));
+        cards.add(new Card(6, Card.Suit.DIAMONDS));
+        cards.add(new Card(Card.KING, Card.Suit.HEARTS));
+
+        //Ninth hand: 7 K 6 6 K
+        cards.add(new Card(7, Card.Suit.SPADES));
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
+        cards.add(new Card(6, Card.Suit.CLUBS));
+        cards.add(new Card(6, Card.Suit.DIAMONDS));
+        cards.add(new Card(Card.KING, Card.Suit.HEARTS));
+
+        //Tenth hand: 6 K 8 6 K
+        cards.add(new Card(6, Card.Suit.SPADES));
+        cards.add(new Card(Card.KING, Card.Suit.DIAMONDS));
+        cards.add(new Card(8, Card.Suit.SPADES));
         cards.add(new Card(6, Card.Suit.HEARTS));
-        cards.add(new Card(4, Card.Suit.CLUBS));
-        cards.add(new Card(8, Card.Suit.CLUBS));
-        cards.add(new Card(Card.JACK, Card.Suit.CLUBS));
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
     }
 
     @Override

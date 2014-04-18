@@ -36,7 +36,6 @@ import org.slf4j.LoggerFactory;
 public class SideBetRule implements ISideBetRule {
 
     private final Logger LOG = LoggerFactory.getLogger(SideBetRule.class);
-
     private final Double PAYOFF_SUPER7 = 3.0;
     private final Double PAYOFF_EXACTLY13 = 10.0;
     private final Double PAYOFF_ROYALMATCH = 5.0;
@@ -45,32 +44,11 @@ public class SideBetRule implements ISideBetRule {
     private final int ROYALMATCH_RULE = 0;
 
     /**
-     * Apply rule to the hand and return the payout if the rule matches and the
-     * negative bet if the rule does not match.
-     *
-     * @param hand Hand to analyze.
-     * @return
-     */
-    @Override
-    public double apply(Hand hand) {
-
-        Card card = hand.getCard(0);
-
-        if (hand.getValue() == SUPER7_RULE) {
-            return this.superSevenBet(hand);
-        } else if (card.getRank() == EXACTLY13_RULE) {
-            return this.exactly13SideBet(hand);
-        } else {
-            return this.royalMatchBet(hand);
-        }
-    }
-
-    /**
      * This is the Super Sevens side bet implementation
      *
      * @private
      * @param hand
-     * @return
+     * @return bet
      */
     private double superSevenBet(Hand hand) {
 
@@ -100,7 +78,7 @@ public class SideBetRule implements ISideBetRule {
      *
      * @private
      * @param hand
-     * @return
+     * @return bet
      */
     private double royalMatchBet(Hand hand) {
 
@@ -133,7 +111,7 @@ public class SideBetRule implements ISideBetRule {
      *
      * @private
      * @param hand
-     * @return
+     * @return bet
      */
     private double exactly13SideBet(Hand hand) {
 
@@ -155,6 +133,28 @@ public class SideBetRule implements ISideBetRule {
         LOG.info("side bet rule no match");
 
         return -bet;
+    }
+
+    /**
+     * Apply rule to the hand and return the payout if the rule matches and the
+     * negative bet if the rule does not match.
+     *
+     * @param hand Hand to analyze.
+     * @return
+     */
+    @Override
+    public double apply(Hand hand) {
+
+        Card card = hand.getCard(0);
+
+        // determine which rule to use
+        if (hand.getValue() == SUPER7_RULE) {
+            return this.superSevenBet(hand);
+        } else if (card.getRank() == EXACTLY13_RULE) {
+            return this.exactly13SideBet(hand);
+        } else {
+            return this.royalMatchBet(hand);
+        }
     }
 
 }

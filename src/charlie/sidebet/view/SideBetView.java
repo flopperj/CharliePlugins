@@ -68,17 +68,23 @@ public class SideBetView implements ISideBetView {
     protected List<ChipButton> buttons;
     protected int amt = 0;
     protected AMoneyManager moneyManager;
+    protected Hid hid;
 
     protected ArrayList<Chip> sideBetChips = new ArrayList<>();
     protected int[] sideBetAmounts = {100, 25, 5};
     protected Random random = new Random();
     protected boolean hasWinningStreak = false;
-    
-    protected Color winColorBg = new Color(116,255,4);
-    protected Color winColorFg = Color.BLACK;
-    protected Color loseColorBg = new Color(250,58,5);
-    protected Color loseColorFg = Color.WHITE;
+    protected boolean hasEnded = false;
 
+    protected Color winColorBg = new Color(116, 255, 4);
+    protected Color winColorFg = Color.BLACK;
+    protected Color loseColorBg = new Color(250, 58, 5);
+    protected Color loseColorFg = Color.WHITE;
+    protected Color rulesColorBg = new Color(203, 241, 115);
+
+    /**
+     * Default constructor
+     */
     public SideBetView() {
         LOG.info("side bet view constructed");
     }
@@ -152,8 +158,10 @@ public class SideBetView implements ISideBetView {
     @Override
     public void ending(Hid hid) {
         double bet = hid.getSideAmt();
+        this.hid = hid;
 
         hasWinningStreak = false;
+        hasEnded = true;
         if (bet == 0) {
             return;
         } else if (bet > 0) {
@@ -173,6 +181,7 @@ public class SideBetView implements ISideBetView {
      */
     @Override
     public void starting() {
+        this.hasEnded = false;
     }
 
     /**
@@ -220,9 +229,10 @@ public class SideBetView implements ISideBetView {
             g.drawString("" + amt, X - 25, Y + 5);
         }
 
-        // Draw side bet rules        
+        // Draw side bet rules    
+        g.setColor(rulesColorBg);
+        g.fillRoundRect(X + 40, Y + 70, 245, 90, 5, 5);
         g.setColor(Color.BLACK);
-//        g.fillRoundRect(X+50, Y+50, 60, 30, 5, 5);
         g.drawString("SUPER 7 pays 3:1", X + 50, Y + 100);
         g.drawString("ROYAL MATCH pays 25:1", X + 50, Y + 120);
         g.drawString("EXACTLY 13 pays 1:1", X + 50, Y + 140);
@@ -231,18 +241,25 @@ public class SideBetView implements ISideBetView {
         for (Chip chip : sideBetChips) {
             chip.render(g);
         }
-        
-        if(hasWinningStreak){
-            g.setColor(winColorBg);    
-            g.fillRoundRect(X+50, Y+50, 60, 30, 5, 5);
-            g.setColor(winColorFg);
-            g.drawString("Win", X+63, Y+70);
-        }else
-        {        
-            g.setColor(loseColorBg);    
-            g.fillRoundRect(X+50, Y+50, 60, 30, 5, 5);
-            g.setColor(loseColorFg);
-            g.drawString("Lose", X+59, Y+70);
+
+        //check if we need to render outcome of our side bet
+        double bet = 0.0;
+        if (this.hid != null) {
+            bet = hid.getSideAmt();
+        }
+
+        if (bet != 0.0 && hasEnded) {
+            if (hasWinningStreak) {
+                g.setColor(winColorBg);
+                g.fillRoundRect(X + 50, Y - 15, 65, 25, 5, 5);
+                g.setColor(winColorFg);
+                g.drawString("WIN!", X + 63, Y + 5);
+            } else {
+                g.setColor(loseColorBg);
+                g.fillRoundRect(X + 50, Y - 15, 75, 25, 5, 5);
+                g.setColor(loseColorFg);
+                g.drawString("LOSE!", X + 59, Y + 5);
+            }
         }
     }
 }
