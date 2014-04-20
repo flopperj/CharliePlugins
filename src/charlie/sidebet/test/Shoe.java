@@ -33,12 +33,12 @@ public class Shoe extends charlie.card.Shoe {
     @Override
     public void init() {
         cards.clear();
-        //First hand: 7 k 9 9 3
+        //First hand: 7 9 3 K 9
         cards.add(new Card(7, Card.Suit.DIAMONDS));
-        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
         cards.add(new Card(9, Card.Suit.SPADES));
-        cards.add(new Card(9, Card.Suit.DIAMONDS));
         cards.add(new Card(3, Card.Suit.HEARTS));
+        cards.add(new Card(Card.KING, Card.Suit.CLUBS));
+        cards.add(new Card(9, Card.Suit.DIAMONDS));
 
         //Second hand: 7 k 9 8 3
         cards.add(new Card(7, Card.Suit.CLUBS));

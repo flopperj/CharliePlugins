@@ -1,0 +1,176 @@
+ant -f /Users/jamesarama/NetBeansProjects/java/charlie -Djavac.includes=charlie/GameFrame.java -Drun.class=charlie.GameFrame -Dnb.internal.action.name=run.single run-single
+init:
+Deleting: /Users/jamesarama/NetBeansProjects/java/charlie/build/built-jar.properties
+deps-jar:
+Updating property file: /Users/jamesarama/NetBeansProjects/java/charlie/build/built-jar.properties
+Compiling 1 source file to /Users/jamesarama/NetBeansProjects/java/charlie/build/classes
+compile-single:
+run-single:
+03:09:50 [AWT-EventQueue-0] INFO charlie.GameFrame - client started
+03:09:51 [AWT-EventQueue-0] INFO charlie.GameFrame - advisor plugin detected: charlie.advisor.Advisor
+03:09:51 [AWT-EventQueue-0] INFO charlie.GameFrame - loaded advisor successfully
+03:09:51 [AWT-EventQueue-0] INFO charlie.GameFrame - init done
+03:09:57 [AWT-EventQueue-0] INFO charlie.GameFrame - opened socket to game server 127.0.0.1:9000
+03:09:57 [AWT-EventQueue-0] INFO charlie.GameFrame - got house addr = 127.0.0.1:1234:HOUSE
+03:09:57 [AWT-EventQueue-0] INFO com.googlecode.actorom.impl.remote.channel.RemoteChannelConnector - Connected to message channel at: 127.0.0.1:1234
+03:09:57 [AWT-EventQueue-0] INFO com.googlecode.actorom.impl.remote.channel.RemoteChannelConnector - Connected to message channel at: 127.0.0.1:1234
+03:09:57 [AWT-EventQueue-0] INFO charlie.GameFrame - got house actor
+03:09:57 [AWT-EventQueue-0] INFO com.googlecode.actorom.impl.remote.channel.RemoteChannel - Bound message channel to: 127.0.0.1:2345
+03:09:57 [AWT-EventQueue-0] INFO com.googlecode.actorom.impl.core.AbstractTopology - Spawning actor with address: 127.0.0.1:2345:COURIER
+03:09:57 [AWT-EventQueue-0] INFO charlie.GameFrame - spawned my addr = 127.0.0.1:2345:COURIER
+03:09:57 [AWT-EventQueue-0] INFO charlie.GameFrame - sent ARRIVAL to com.googlecode.actorom.impl.remote.RemoteActorProxy@4fc9a3d6
+03:09:57 [Thread-5] INFO charlie.actor.Courier - received charlie.message.view.to.Ready@1a0b8332 from 127.0.0.1:1234:PLAYER-2
+03:09:57 [Thread-5] INFO com.googlecode.actorom.impl.remote.channel.RemoteChannelConnector - Connected to message channel at: 127.0.0.1:1234
+03:09:57 [Thread-5] INFO com.googlecode.actorom.impl.remote.channel.RemoteChannelConnector - Connected to message channel at: 127.0.0.1:1234
+03:09:57 [AWT-EventQueue-0] INFO charlie.GameFrame - connected to courier bankroll = 1000.0
+03:10:12 [AWT-EventQueue-0] INFO charlie.view.ATable - side bet = 0
+03:10:12 [AWT-EventQueue-0] ERROR charlie.card.Hid - java.net.UnknownHostException: 148-100-144-115.foxnet.marist.edu: 148-100-144-115.foxnet.marist.edu: nodename nor servname provided, or not known
+03:10:12 [Thread-5] INFO charlie.actor.Courier - receive starting shoe size = 52
+03:10:12 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:YOU:44DF4BA02B26AEC8
+03:10:12 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:LEFT:629BC2229CEFE94D
+03:10:12 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:DEALER:3E16CD10465F0A8
+03:10:13 [Thread-5] INFO charlie.actor.Courier - received card = DQ values = 10/10 hid = UNKNOWN:YOU:44DF4BA02B26AEC8
+03:10:14 [Thread-5] INFO charlie.actor.Courier - received card = S7 values = 7/7 hid = UNKNOWN:LEFT:629BC2229CEFE94D
+03:10:15 [Thread-5] INFO charlie.actor.Courier - received card = C7 values = 0/0 hid = UNKNOWN:DEALER:3E16CD10465F0A8
+03:10:15 [Thread-5] INFO charlie.actor.Courier - received card = S10 values = 20/20 hid = UNKNOWN:YOU:44DF4BA02B26AEC8
+03:10:16 [Thread-5] INFO charlie.actor.Courier - received card = D4 values = 11/11 hid = UNKNOWN:LEFT:629BC2229CEFE94D
+03:10:17 [Thread-5] INFO charlie.actor.Courier - received card = DJ values = 10/10 hid = UNKNOWN:DEALER:3E16CD10465F0A8
+03:10:17 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:YOU:44DF4BA02B26AEC8
+03:10:18 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:LEFT:629BC2229CEFE94D
+03:10:21 [Thread-5] INFO charlie.actor.Courier - received card = DK values = 21/21 hid = UNKNOWN:LEFT:629BC2229CEFE94D
+03:10:21 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:DEALER:3E16CD10465F0A8
+03:10:21 [Thread-5] INFO charlie.actor.Courier - received card = null values = 17/17 hid = UNKNOWN:DEALER:3E16CD10465F0A8
+03:10:21 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@46acd739
+03:10:21 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:YOU:44DF4BA02B26AEC8 amt = 2000.0
+03:10:21 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@16ece010
+03:10:21 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:LEFT:629BC2229CEFE94D amt = 10.0
+03:10:21 [Thread-5] INFO charlie.actor.Courier - received ending shoe size = 45
+03:10:21 [Thread-5] INFO charlie.view.ATable - num hands = 3
+03:10:21 [Thread-5] INFO charlie.view.ATable - winner count = 2
+03:10:21 [Thread-5] INFO charlie.view.ATable - looser count = 0
+03:10:21 [Thread-5] INFO charlie.view.ATable - push count = 0
+03:10:24 [AWT-EventQueue-0] INFO charlie.view.ATable - side bet = 0
+03:10:24 [AWT-EventQueue-0] ERROR charlie.card.Hid - java.net.UnknownHostException: 148-100-144-115.foxnet.marist.edu: 148-100-144-115.foxnet.marist.edu: nodename nor servname provided, or not known
+03:10:24 [Thread-5] INFO charlie.actor.Courier - receive starting shoe size = 45
+03:10:24 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:YOU:3D93CB799B3970BE
+03:10:24 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:LEFT:1EEDE4F7FA174EF9
+03:10:24 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:DEALER:F0A4B0DD2F32F0F
+03:10:25 [Thread-5] INFO charlie.actor.Courier - received card = C3 values = 3/3 hid = UNKNOWN:YOU:3D93CB799B3970BE
+03:10:26 [Thread-5] INFO charlie.actor.Courier - received card = D6 values = 6/6 hid = UNKNOWN:LEFT:1EEDE4F7FA174EF9
+03:10:27 [Thread-5] INFO charlie.actor.Courier - received card = C2 values = 0/0 hid = UNKNOWN:DEALER:F0A4B0DD2F32F0F
+03:10:27 [Thread-5] INFO charlie.actor.Courier - received card = H9 values = 12/12 hid = UNKNOWN:YOU:3D93CB799B3970BE
+03:10:28 [Thread-5] INFO charlie.actor.Courier - received card = H5 values = 11/11 hid = UNKNOWN:LEFT:1EEDE4F7FA174EF9
+03:10:29 [Thread-5] INFO charlie.actor.Courier - received card = SK values = 10/10 hid = UNKNOWN:DEALER:F0A4B0DD2F32F0F
+03:10:29 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:YOU:3D93CB799B3970BE
+03:10:31 [Thread-5] INFO charlie.actor.Courier - received card = H3 values = 15/15 hid = UNKNOWN:YOU:3D93CB799B3970BE
+03:10:33 [Thread-5] INFO charlie.actor.Courier - received card = D8 values = 23/23 hid = UNKNOWN:YOU:3D93CB799B3970BE
+03:10:33 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Bust@27693a93
+03:10:33 [Thread-5] INFO charlie.view.ATable - BUST for hid = UNKNOWN:YOU:3D93CB799B3970BE amt = 2000.0
+03:10:34 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:LEFT:1EEDE4F7FA174EF9
+03:10:35 [Thread-5] INFO charlie.actor.Courier - received card = H8 values = 19/19 hid = UNKNOWN:LEFT:1EEDE4F7FA174EF9
+03:10:35 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:DEALER:F0A4B0DD2F32F0F
+03:10:35 [Thread-5] INFO charlie.actor.Courier - received card = null values = 12/12 hid = UNKNOWN:DEALER:F0A4B0DD2F32F0F
+03:10:36 [Thread-5] INFO charlie.actor.Courier - received card = D10 values = 22/22 hid = UNKNOWN:DEALER:F0A4B0DD2F32F0F
+03:10:36 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@1cb153a6
+03:10:36 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:LEFT:1EEDE4F7FA174EF9 amt = 10.0
+03:10:36 [Thread-5] INFO charlie.actor.Courier - received ending shoe size = 35
+03:10:36 [Thread-5] INFO charlie.view.ATable - num hands = 3
+03:10:36 [Thread-5] INFO charlie.view.ATable - winner count = 1
+03:10:36 [Thread-5] INFO charlie.view.ATable - looser count = 1
+03:10:36 [Thread-5] INFO charlie.view.ATable - push count = 0
+03:10:39 [AWT-EventQueue-0] INFO charlie.view.ATable - side bet = 0
+03:10:39 [AWT-EventQueue-0] ERROR charlie.card.Hid - java.net.UnknownHostException: 148-100-144-115.foxnet.marist.edu: 148-100-144-115.foxnet.marist.edu: nodename nor servname provided, or not known
+03:10:39 [Thread-5] INFO charlie.actor.Courier - receive starting shoe size = 35
+03:10:39 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:YOU:5CD23609B0E20FC6
+03:10:39 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:LEFT:4663620F501C9270
+03:10:39 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:DEALER:20FF67585E33A8F6
+03:10:40 [Thread-5] INFO charlie.actor.Courier - received card = CJ values = 10/10 hid = UNKNOWN:YOU:5CD23609B0E20FC6
+03:10:40 [Thread-5] INFO charlie.actor.Courier - received card = HJ values = 10/10 hid = UNKNOWN:LEFT:4663620F501C9270
+03:10:41 [Thread-5] INFO charlie.actor.Courier - received card = S6 values = 0/0 hid = UNKNOWN:DEALER:20FF67585E33A8F6
+03:10:42 [Thread-5] INFO charlie.actor.Courier - received card = C10 values = 20/20 hid = UNKNOWN:YOU:5CD23609B0E20FC6
+03:10:43 [Thread-5] INFO charlie.actor.Courier - received card = HQ values = 20/20 hid = UNKNOWN:LEFT:4663620F501C9270
+03:10:43 [Thread-5] INFO charlie.actor.Courier - received card = CA values = 1/11 hid = UNKNOWN:DEALER:20FF67585E33A8F6
+03:10:43 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:YOU:5CD23609B0E20FC6
+03:10:45 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:LEFT:4663620F501C9270
+03:10:47 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:DEALER:20FF67585E33A8F6
+03:10:47 [Thread-5] INFO charlie.actor.Courier - received card = null values = 7/17 hid = UNKNOWN:DEALER:20FF67585E33A8F6
+03:10:47 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@af664ec
+03:10:47 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:YOU:5CD23609B0E20FC6 amt = 2000.0
+03:10:47 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@367a1d62
+03:10:47 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:LEFT:4663620F501C9270 amt = 5.0
+03:10:47 [Thread-5] INFO charlie.actor.Courier - received ending shoe size = 29
+03:10:47 [Thread-5] INFO charlie.view.ATable - num hands = 3
+03:10:47 [Thread-5] INFO charlie.view.ATable - winner count = 2
+03:10:47 [Thread-5] INFO charlie.view.ATable - looser count = 0
+03:10:47 [Thread-5] INFO charlie.view.ATable - push count = 0
+03:10:49 [AWT-EventQueue-0] INFO charlie.view.ATable - side bet = 0
+03:10:49 [AWT-EventQueue-0] ERROR charlie.card.Hid - java.net.UnknownHostException: 148-100-144-115.foxnet.marist.edu: 148-100-144-115.foxnet.marist.edu: nodename nor servname provided, or not known
+03:10:49 [Thread-5] INFO charlie.actor.Courier - receive starting shoe size = 29
+03:10:49 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:YOU:73168F48E20BDAFD
+03:10:49 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:LEFT:2587AF97B4865538
+03:10:49 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:DEALER:5F2EF1F005AE0B4
+03:10:50 [Thread-5] INFO charlie.actor.Courier - received card = S4 values = 4/4 hid = UNKNOWN:YOU:73168F48E20BDAFD
+03:10:51 [Thread-5] INFO charlie.actor.Courier - received card = D2 values = 2/2 hid = UNKNOWN:LEFT:2587AF97B4865538
+03:10:52 [Thread-5] INFO charlie.actor.Courier - received card = C4 values = 0/0 hid = UNKNOWN:DEALER:5F2EF1F005AE0B4
+03:10:52 [Thread-5] INFO charlie.actor.Courier - received card = H10 values = 14/14 hid = UNKNOWN:YOU:73168F48E20BDAFD
+03:10:53 [Thread-5] INFO charlie.actor.Courier - received card = SJ values = 12/12 hid = UNKNOWN:LEFT:2587AF97B4865538
+03:10:54 [Thread-5] INFO charlie.actor.Courier - received card = D5 values = 5/5 hid = UNKNOWN:DEALER:5F2EF1F005AE0B4
+03:10:54 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:YOU:73168F48E20BDAFD
+03:10:58 [Thread-5] INFO charlie.actor.Courier - received card = H4 values = 18/18 hid = UNKNOWN:YOU:73168F48E20BDAFD
+03:11:00 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:LEFT:2587AF97B4865538
+03:11:01 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:DEALER:5F2EF1F005AE0B4
+03:11:01 [Thread-5] INFO charlie.actor.Courier - received card = null values = 9/9 hid = UNKNOWN:DEALER:5F2EF1F005AE0B4
+03:11:02 [Thread-5] INFO charlie.actor.Courier - received card = H2 values = 11/11 hid = UNKNOWN:DEALER:5F2EF1F005AE0B4
+03:11:03 [Thread-5] INFO charlie.actor.Courier - received card = S3 values = 14/14 hid = UNKNOWN:DEALER:5F2EF1F005AE0B4
+03:11:03 [Thread-5] INFO charlie.actor.Courier - received card = S9 values = 23/23 hid = UNKNOWN:DEALER:5F2EF1F005AE0B4
+03:11:03 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@1769e8e3
+03:11:03 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:YOU:73168F48E20BDAFD amt = 2000.0
+03:11:03 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@52ee41b
+03:11:03 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:LEFT:2587AF97B4865538 amt = 5.0
+03:11:03 [Thread-5] INFO charlie.actor.Courier - received ending shoe size = 19
+03:11:03 [Thread-5] INFO charlie.view.ATable - num hands = 3
+03:11:03 [Thread-5] INFO charlie.view.ATable - winner count = 2
+03:11:03 [Thread-5] INFO charlie.view.ATable - looser count = 0
+03:11:03 [Thread-5] INFO charlie.view.ATable - push count = 0
+03:11:06 [AWT-EventQueue-0] INFO charlie.view.ATable - side bet = 0
+03:11:06 [AWT-EventQueue-0] ERROR charlie.card.Hid - java.net.UnknownHostException: 148-100-144-115.foxnet.marist.edu: 148-100-144-115.foxnet.marist.edu: nodename nor servname provided, or not known
+03:11:06 [Thread-5] INFO charlie.actor.Courier - receive starting shoe size = 19
+03:11:06 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:YOU:670745C237ED5893
+03:11:06 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:LEFT:7408DCF7FDA370A1
+03:11:06 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:DEALER:91763BD6FE28786
+03:11:07 [Thread-5] INFO charlie.actor.Courier - received card = DA values = 1/11 hid = UNKNOWN:YOU:670745C237ED5893
+03:11:08 [Thread-5] INFO charlie.actor.Courier - received card = SA values = 1/11 hid = UNKNOWN:LEFT:7408DCF7FDA370A1
+03:11:09 [Thread-5] INFO charlie.actor.Courier - received card = S2 values = 0/0 hid = UNKNOWN:DEALER:91763BD6FE28786
+03:11:10 [Thread-5] INFO charlie.actor.Courier - received card = D7 values = 8/18 hid = UNKNOWN:YOU:670745C237ED5893
+03:11:10 [Thread-5] INFO charlie.actor.Courier - received card = C5 values = 6/16 hid = UNKNOWN:LEFT:7408DCF7FDA370A1
+03:11:11 [Thread-5] INFO charlie.actor.Courier - received card = HK values = 10/10 hid = UNKNOWN:DEALER:91763BD6FE28786
+03:11:11 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:YOU:670745C237ED5893
+03:11:14 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:LEFT:7408DCF7FDA370A1
+03:11:16 [Thread-5] INFO charlie.actor.Courier - received card = C9 values = 15/25 hid = UNKNOWN:LEFT:7408DCF7FDA370A1
+03:11:18 [Thread-5] INFO charlie.actor.Courier - received card = S5 values = 20/30 hid = UNKNOWN:LEFT:7408DCF7FDA370A1
+03:11:20 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:DEALER:91763BD6FE28786
+03:11:20 [Thread-5] INFO charlie.actor.Courier - received card = null values = 12/12 hid = UNKNOWN:DEALER:91763BD6FE28786
+03:11:21 [Thread-5] INFO charlie.actor.Courier - received card = CK values = 22/22 hid = UNKNOWN:DEALER:91763BD6FE28786
+03:11:21 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@53f36a64
+03:11:21 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:YOU:670745C237ED5893 amt = 2000.0
+03:11:21 [Thread-5] INFO charlie.actor.Courier - received outcome = charlie.message.view.to.Win@56b2d6bd
+03:11:21 [Thread-5] INFO charlie.view.ATable - WIN for hid = UNKNOWN:LEFT:7408DCF7FDA370A1 amt = 5.0
+03:11:21 [Thread-5] INFO charlie.actor.Courier - received ending shoe size = 10
+03:11:21 [Thread-5] INFO charlie.view.ATable - num hands = 3
+03:11:21 [Thread-5] INFO charlie.view.ATable - winner count = 2
+03:11:21 [Thread-5] INFO charlie.view.ATable - looser count = 0
+03:11:21 [Thread-5] INFO charlie.view.ATable - push count = 0
+03:11:24 [AWT-EventQueue-0] INFO charlie.view.ATable - side bet = 0
+03:11:24 [AWT-EventQueue-0] ERROR charlie.card.Hid - java.net.UnknownHostException: 148-100-144-115.foxnet.marist.edu: 148-100-144-115.foxnet.marist.edu: nodename nor servname provided, or not known
+03:11:24 [Thread-5] INFO charlie.actor.Courier - receive starting shoe size = 10
+03:11:24 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:YOU:554DCD2B40B5F04B
+03:11:24 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:LEFT:1ABFE6CB40BCF2E7
+03:11:24 [Thread-5] INFO charlie.actor.Courier - starting hand: UNKNOWN:DEALER:5FF6685BB6CEF194
+03:11:24 [Thread-5] INFO charlie.actor.Courier - received shuffle
+03:11:28 [Thread-5] INFO charlie.actor.Courier - received card = HA values = 1/11 hid = UNKNOWN:YOU:554DCD2B40B5F04B
+03:11:29 [Thread-5] INFO charlie.actor.Courier - received card = C9 values = 9/9 hid = UNKNOWN:LEFT:1ABFE6CB40BCF2E7
+03:11:29 [Thread-5] INFO charlie.actor.Courier - received card = HQ values = 0/0 hid = UNKNOWN:DEALER:5FF6685BB6CEF194
+03:11:30 [Thread-5] INFO charlie.actor.Courier - received card = D3 values = 4/14 hid = UNKNOWN:YOU:554DCD2B40B5F04B
+03:11:31 [Thread-5] INFO charlie.actor.Courier - received card = D7 values = 16/16 hid = UNKNOWN:LEFT:1ABFE6CB40BCF2E7
+03:11:32 [Thread-5] INFO charlie.actor.Courier - received card = CJ values = 10/10 hid = UNKNOWN:DEALER:5FF6685BB6CEF194
+03:11:32 [Thread-5] INFO charlie.actor.Courier - got trun = UNKNOWN:YOU:554DCD2B40B5F04B

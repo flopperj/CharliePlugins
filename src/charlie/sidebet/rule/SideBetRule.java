@@ -37,8 +37,8 @@ public class SideBetRule implements ISideBetRule {
 
     private final Logger LOG = LoggerFactory.getLogger(SideBetRule.class);
     private final Double PAYOFF_SUPER7 = 3.0;
-    private final Double PAYOFF_EXACTLY13 = 10.0;
-    private final Double PAYOFF_ROYALMATCH = 5.0;
+    private final Double PAYOFF_EXACTLY13 = 1.0;
+    private final Double PAYOFF_ROYALMATCH = 25.0;
     private final int SUPER7_RULE = 7;
     private final int EXACTLY13_RULE = 13;
     private final int ROYALMATCH_RULE = 0;
@@ -144,7 +144,6 @@ public class SideBetRule implements ISideBetRule {
      */
     @Override
     public double apply(Hand hand) {
-
         Card card = hand.getCard(0);
 
         // determine which rule to use

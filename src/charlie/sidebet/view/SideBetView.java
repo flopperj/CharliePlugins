@@ -182,6 +182,7 @@ public class SideBetView implements ISideBetView {
     @Override
     public void starting() {
         this.hasEnded = false;
+        this.hid = null;
     }
 
     /**
