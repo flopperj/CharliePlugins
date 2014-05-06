@@ -153,7 +153,6 @@ public class B9 implements IBot {
         if(hid.getSeat() != mine || hand.isBroke() || !myTurn) {
             myTurn = false;
             LOG.info("IT KNOWS ITS NOT ITS TURN");
-            return;
         } else {
             LOG.info("IT IS ITS TURN");
             // It's my turn, a card has come my way, and I have to respond
@@ -246,7 +245,6 @@ public class B9 implements IBot {
         if(hid.getSeat() != mine){
             myTurn = false;
             LOG.info("STILL not its turn");
-            return;
         }else{
         
         // Othewise respond
