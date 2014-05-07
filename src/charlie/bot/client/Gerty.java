@@ -19,7 +19,8 @@ import org.slf4j.LoggerFactory;
 /**
  * This is an artificial player
  *
- * @author jamesarama
+ * @author James Arama
+ * @author Gabriela Rosales
  */
 public class Gerty implements IGerty {
 

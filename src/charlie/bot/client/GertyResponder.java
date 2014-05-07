@@ -10,7 +10,8 @@ import charlie.util.Play;
 /**
  * This is the Responder Class
  *
- * @author James Arama & Gabriela Rosales
+ * @author James Arama
+ * @author Gabriela Rosales
  */
 class GertyResponder implements Runnable {
 
