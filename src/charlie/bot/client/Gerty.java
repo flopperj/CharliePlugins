@@ -10,6 +10,7 @@ import charlie.view.AMoneyManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import org.slf4j.Logger;
@@ -29,6 +30,8 @@ public class Gerty implements IGerty {
     protected Hid dealerHid;
     protected Hand myHand;
     protected HashMap<Hid, Hand> hands = new HashMap<>();
+    protected Date start = new Date();
+    protected Date end = new Date();
 
     protected int bustCount;
     protected int winCount;
@@ -40,9 +43,12 @@ public class Gerty implements IGerty {
     protected int trueCount;
     protected int runningCount;
     protected int shoeSize;
-    protected int minBetAmount;
+    protected int meanBetAmount;
+    protected int currentBetAmount;
     protected int maxBetAmount;
+    protected int totalBetsAmount;
     protected int gamesPlayed;
+    protected double deckSize;
     private boolean myTurn;
 
     /**
@@ -58,10 +64,14 @@ public class Gerty implements IGerty {
         this.runningCount = 0;
         this.trueCount = 0;
         this.winCount = 0;
-        this.minBetAmount = 5;
+        this.meanBetAmount = 5;
+        this.currentBetAmount = 5;
         this.maxBetAmount = 5;
+        this.totalBetsAmount = 0;
         this.shoeSize = 0;
-        this.gamesPlayed = 0;
+        this.gamesPlayed = 1;
+        this.start = new Date();
+        this.deckSize = 1.0;
     }
 
     /**
@@ -71,9 +81,9 @@ public class Gerty implements IGerty {
      */
     @Override
     public void go() {
-        this.gertyMoneyManager.upBet(this.minBetAmount, true);
+        this.gertyMoneyManager.upBet(this.currentBetAmount, true);
         this.mySeat = Seat.YOU;
-        this.hid = gertyCourier.bet(this.minBetAmount, 0);
+        this.hid = gertyCourier.bet(this.currentBetAmount, 0);
         this.myHand = new Hand(this.hid);
     }
 
@@ -99,6 +109,7 @@ public class Gerty implements IGerty {
 
     @Override
     public void update() {
+        this.end = new Date();
     }
 
     /**
@@ -111,24 +122,41 @@ public class Gerty implements IGerty {
         g.setFont(new Font("ARIAL", Font.BOLD, 14));
         int startX = 10;
 
+        // calculate time
+        long diffInSeconds = (this.end.getTime() - this.start.getTime()) / 1000;
+
+        long diff[] = new long[]{0, 0, 0, 0};
+        /* sec */
+        diff[3] = (diffInSeconds >= 60 ? diffInSeconds % 60 : diffInSeconds);
+        /* min */
+        diff[2] = (diffInSeconds = (diffInSeconds / 60)) >= 60 ? diffInSeconds % 60 : diffInSeconds;
+        /* hours */
+        diff[1] = (diffInSeconds = (diffInSeconds / 60)) >= 24 ? diffInSeconds % 24 : diffInSeconds;
+        /* days */
+//        diff[0] = (diffInSeconds = (diffInSeconds / 24));
+
         // Draw side bet rules    
         g.setColor(new Color(203, 241, 115));
-        g.fillRoundRect(startX - 5, 10, 135, 310, 5, 5);
+        g.fillRoundRect(startX - 5, 30, 135, 320, 5, 5);
         g.setColor(Color.BLACK);
-        g.drawString("Hi-Low", startX, 40);
-        g.drawString("Shoe Size: " + this.shoeSize, startX, 60);
-        g.drawString("Running Count: " + this.runningCount, startX, 80);
-        g.drawString("True Count: " + this.runningCount, startX, 100);
-        g.drawString("Games Played: " + gamesPlayed, startX, 120);
-        g.drawString("Mins Played: --", startX, 140);
-        g.drawString("Max bet amount: " + this.maxBetAmount, startX, 160);
-        g.drawString("Min bet amount: --", startX, 180);
-        g.drawString("Blackjacks: " + this.blackjackCount, startX, 200);
-        g.drawString("Charles: " + this.charlieCount, startX, 220);
-        g.drawString("Wins: " + this.winCount, startX, 240);
-        g.drawString("Breaks: " + this.breakCount, startX, 260);
-        g.drawString("Loses: " + this.lossCount, startX, 280);
-        g.drawString("Pushes: " + this.pushCount, startX, 300);
+        g.drawString("Hi-Low", startX, 70);
+        g.drawString("Shoe Size: " + this.shoeSize, startX, 90);
+        g.drawString("Running Count: " + this.runningCount, startX, 110);
+        g.drawString("True Count: " + this.trueCount, startX, 130);
+        g.drawString("Games Played: " + gamesPlayed, startX, 150);
+        g.drawString("Time:\n " + String.format(
+                "%02d:%02d:%02d",
+                diff[1],
+                diff[2],
+                diff[3]), startX, 170);
+        g.drawString("Max bet: " + this.currentBetAmount, startX, 190);
+        g.drawString("Mean bet: " + this.meanBetAmount, startX, 210);
+        g.drawString("Blackjacks: " + this.blackjackCount, startX, 230);
+        g.drawString("Charles: " + this.charlieCount, startX, 250);
+        g.drawString("Wins: " + this.winCount, startX, 270);
+        g.drawString("Breaks: " + this.breakCount, startX, 290);
+        g.drawString("Loses: " + this.lossCount, startX, 310);
+        g.drawString("Pushes: " + this.pushCount, startX, 330);
     }
 
     /**
@@ -149,6 +177,8 @@ public class Gerty implements IGerty {
                 this.dealerHid = _hid;
             }
         }
+
+        this.deckSize = shoeSize > 52 ? shoeSize / 52 : 1.0;
     }
 
     /**
@@ -160,6 +190,7 @@ public class Gerty implements IGerty {
     public void endGame(int shoeSize) {
         this.gamesPlayed++;
         this.myTurn = false;
+        this.deckSize = shoeSize > 52 ? shoeSize / 52 : 1.0;
         LOG.info("received endGame shoeSize = " + shoeSize);
     }
 
@@ -197,6 +228,21 @@ public class Gerty implements IGerty {
 
         // Hit the hand
         hand.hit(card);
+
+        // calculate running Hi-Lo count.
+        int currentCardValue = card.getRank();
+        if (currentCardValue > 9 || currentCardValue == 1) {
+            --runningCount;
+        } else if (currentCardValue < 7) {
+            ++runningCount;
+        }
+
+        // calculate true count
+        this.trueCount = (int) Math.ceil(this.runningCount / this.deckSize);
+
+        // update the mean bets
+        this.totalBetsAmount += this.currentBetAmount;
+        this.meanBetAmount = this.totalBetsAmount / this.gamesPlayed;
 
         // It's not my turn if card not mine, my hand broke, or
         // this is the first round of cards in which case it's not
