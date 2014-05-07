@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * This is an artificial player
  *
  * @author jamesarama
  */
@@ -152,7 +153,7 @@ public class Gerty implements IGerty {
         g.drawString("Max bet: " + this.currentBetAmount, startX, 190);
         g.drawString("Mean bet: " + this.meanBetAmount, startX, 210);
         g.drawString("Blackjacks: " + this.blackjackCount, startX, 230);
-        g.drawString("Charles: " + this.charlieCount, startX, 250);
+        g.drawString("Charlies: " + this.charlieCount, startX, 250);
         g.drawString("Wins: " + this.winCount, startX, 270);
         g.drawString("Breaks: " + this.breakCount, startX, 290);
         g.drawString("Loses: " + this.lossCount, startX, 310);
