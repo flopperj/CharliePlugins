@@ -48,6 +48,7 @@ public class Gerty implements IGerty {
     protected int meanBetAmount;
     protected int currentBetAmount;
     protected int maxBetAmount;
+    protected final int MIN_BET_AMOUNT = 5;
     protected int totalBetsAmount;
     protected int gamesPlayed;
     protected double deckSize;
@@ -66,9 +67,9 @@ public class Gerty implements IGerty {
         this.runningCount = 0;
         this.trueCount = 0;
         this.winCount = 0;
-        this.meanBetAmount = 5;
-        this.currentBetAmount = 5;
-        this.maxBetAmount = 5;
+        this.meanBetAmount = this.MIN_BET_AMOUNT;
+        this.currentBetAmount = this.MIN_BET_AMOUNT;
+        this.maxBetAmount = this.MIN_BET_AMOUNT;
         this.totalBetsAmount = 0;
         this.shoeSize = 0;
         this.gamesPlayed = 1;
@@ -83,6 +84,13 @@ public class Gerty implements IGerty {
      */
     @Override
     public void go() {
+        this.currentBetAmount = Math.max(1, 1 + this.trueCount) * this.MIN_BET_AMOUNT;
+
+        // Max bet
+        if (this.currentBetAmount > this.maxBetAmount) {
+            this.maxBetAmount = this.currentBetAmount;
+        }
+
         this.gertyMoneyManager.upBet(this.currentBetAmount, true);
         this.mySeat = Seat.YOU;
         this.hid = gertyCourier.bet(this.currentBetAmount, 0);
@@ -159,6 +167,7 @@ public class Gerty implements IGerty {
         g.drawString("Breaks: " + this.breakCount, startX, 290);
         g.drawString("Loses: " + this.lossCount, startX, 310);
         g.drawString("Pushes: " + this.pushCount, startX, 330);
+//        g.drawString("Deck Size: " + this.deckSize, startX, 350);
     }
 
     /**
@@ -180,7 +189,7 @@ public class Gerty implements IGerty {
             }
         }
 
-        this.deckSize = shoeSize > 52 ? shoeSize / 52 : 1.0;
+        this.deckSize = shoeSize / 52.0;
     }
 
     /**
@@ -192,7 +201,15 @@ public class Gerty implements IGerty {
     public void endGame(int shoeSize) {
         this.gamesPlayed++;
         this.myTurn = false;
-        this.deckSize = shoeSize > 52 ? shoeSize / 52 : 1.0;
+        this.deckSize = shoeSize / 52.0;
+
+        // calculate true count
+        this.trueCount = (int) Math.ceil(this.runningCount / this.deckSize);
+
+        // update the mean bets
+        this.totalBetsAmount += this.currentBetAmount;
+        this.meanBetAmount = this.totalBetsAmount / this.gamesPlayed;
+
         LOG.info("received endGame shoeSize = " + shoeSize);
     }
 
@@ -232,19 +249,12 @@ public class Gerty implements IGerty {
         hand.hit(card);
 
         // calculate running Hi-Lo count.
-        int currentCardValue = card.getRank();
+        int currentCardValue = card.value();
         if (currentCardValue > 9 || currentCardValue == 1) {
             --runningCount;
-        } else if (currentCardValue < 7) {
+        } else if (currentCardValue > 1 && currentCardValue < 7) {
             ++runningCount;
         }
-
-        // calculate true count
-        this.trueCount = (int) Math.ceil(this.runningCount / this.deckSize);
-
-        // update the mean bets
-        this.totalBetsAmount += this.currentBetAmount;
-        this.meanBetAmount = this.totalBetsAmount / this.gamesPlayed;
 
         // It's not my turn if card not mine, my hand broke, or
         // this is the first round of cards in which case it's not
