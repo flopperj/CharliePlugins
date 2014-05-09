@@ -85,12 +85,6 @@ public class Gerty implements IGerty {
     @Override
     public void go() {
         this.currentBetAmount = Math.max(1, 1 + this.trueCount) * this.MIN_BET_AMOUNT;
-
-        // Max bet
-        if (this.currentBetAmount > this.maxBetAmount) {
-            this.maxBetAmount = this.currentBetAmount;
-        }
-
         this.gertyMoneyManager.upBet(this.currentBetAmount, true);
         this.mySeat = Seat.YOU;
         this.hid = gertyCourier.bet(this.currentBetAmount, 0);
@@ -207,8 +201,12 @@ public class Gerty implements IGerty {
         this.trueCount = (int) Math.ceil(this.runningCount / this.deckSize);
 
         // update the mean bets
-        this.totalBetsAmount += this.currentBetAmount;
-        this.meanBetAmount = this.totalBetsAmount / this.gamesPlayed;
+        this.meanBetAmount = (this.meanBetAmount * (this.gamesPlayed - 1) + this.currentBetAmount) / this.gamesPlayed;
+
+        // Max bet
+        if (this.currentBetAmount > this.maxBetAmount) {
+            this.maxBetAmount = this.currentBetAmount;
+        }
 
         LOG.info("received endGame shoeSize = " + shoeSize);
     }
@@ -354,6 +352,8 @@ public class Gerty implements IGerty {
      */
     @Override
     public void shuffling() {
+        this.runningCount = 0;
+        this.trueCount = 0;
         LOG.info("SHUFFLING...");
     }
 
